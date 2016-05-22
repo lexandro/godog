@@ -92,7 +92,7 @@ func Run(contextInitializer func(suite *Suite)) int {
 	fatal(err)
 
 	r := runner{
-		fmt:         formatter,
+		fmt:         formatter(os.Stdout),
 		initializer: contextInitializer,
 		semaphore:   make(chan int, concurrency),
 		features:    features,
