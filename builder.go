@@ -19,10 +19,8 @@ import (
 	"testing"
 )
 
-const GodogSuiteName = "{{ .Name }}"
-
 func TestMain(m *testing.M) {
-	status := {{ if ne .Name "godog" }}godog.{{ end }}Run(func (suite *{{ if ne .Name "godog" }}godog.{{ end }}Suite) {
+	status := {{ if ne .Name "godog" }}godog.{{ end }}Run("{{ .Name }}", func (suite *{{ if ne .Name "godog" }}godog.{{ end }}Suite) {
 		{{range .Contexts}}
 			{{ . }}(suite)
 		{{end}}
